@@ -10,8 +10,24 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class MailPage extends BasePage{
 
-    @FindBy(xpath = "")
+    @FindBy(css = "#identifierId")
+    public WebElement login;
+
+    @FindBy(css = "#identifierNext")
+    public WebElement identifierNext;
+
+    @FindBy(css = ".whsOnd.zHQkBf")
+    public WebElement password;
+
+    @FindBy(css = "#passwordNext")
+    public WebElement passwordNext;
+
+
+    @FindBy(xpath = "//*[@class='zA zE']")
     public WebElement notOpenedMail;
+
+    @FindBy(xpath = "//*[contains(text(), 'Подтвердить')]")
+    public WebElement accertButton;
 
 
     public MailPage(WebDriver driver) {
