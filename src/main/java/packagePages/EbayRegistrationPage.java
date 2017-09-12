@@ -39,4 +39,8 @@ public class EbayRegistrationPage extends BasePage {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
+
+    public void checkPresent(){
+
+    }
 }

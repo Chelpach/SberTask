@@ -10,7 +10,7 @@ public class BasePage {
 
     WebDriver driver;
 
-    protected void fillField(WebElement element, String value) {
+    public static void fillField(WebElement element, String value) {
         element.clear();
         element.sendKeys(value);
     }

@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     static WebDriver driver;
-    static String baseUrl;
+    static String baseUrl,login,passwordApp,mailUrl,passwordMail;
     private static Properties properties = TestProperties.getInstance().getProperties();
 
     @BeforeClass
@@ -34,6 +35,10 @@ public class BaseTest {
                 driver = new ChromeDriver();
         }
         baseUrl = properties.getProperty("app.url");
+        mailUrl=properties.getProperty("mail.url");
+        login= properties.getProperty("login");
+        passwordApp=properties.getProperty("password.app");
+        passwordMail=properties.getProperty("password.mail");
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
@@ -48,6 +53,12 @@ public class BaseTest {
             return true;
         } catch (NoSuchElementException e) {
             return false;
+        }
+    }
+
+    protected void switchWindow(){
+        for (String winHandle : driver.getWindowHandles()) {
+            driver.switchTo().window(winHandle);
         }
     }
 
