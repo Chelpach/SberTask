@@ -53,7 +53,7 @@ public class EbayRegistrationPage extends BasePage {
             case  "Телефон":
                 fillField(phoneFlagComp1, value);
                 break;
-            case  "Эл. почта":
+            case  "Адрес эл. почты":
                 fillField(email, value);
                 break;
             case  "Пароль":

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
-public class SberTest {
+public class SberTest extends BaseSteps{
     BaseSteps baseSteps = new BaseSteps();
     EbayMainPageSteps ebayMainPageSteps = new EbayMainPageSteps();
     EbayRegistrationSteps ebayRegistrationPage = new EbayRegistrationSteps();
@@ -20,7 +20,7 @@ public class SberTest {
     public void testScenario1() throws Exception {
         testData.put("Имя", "Дмитрий");
         testData.put("Фамилия", "Дмитриев");
-        testData.put("Эл.Почта", baseSteps.login);
+        testData.put("Адрес эл. почты", baseSteps.login);
         testData.put("Пароль", baseSteps.passwordApp);
         testData.put("Телефон", "4056664523");
         testData.put("Повторный ввод эл.почты", baseSteps.login);

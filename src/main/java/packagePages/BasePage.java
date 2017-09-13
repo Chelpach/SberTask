@@ -25,7 +25,6 @@ public class BasePage {
         }
     }
 
-
     public boolean isElementPresent(WebElement element) {
         try {
             driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
