@@ -1,7 +1,13 @@
 package steps;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import packagePages.BasePage;
 import packagePages.EbayRegistrationPage;
 import packagePages.MailPage;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -26,24 +32,30 @@ public class MailPageSteps {
 
     @Step("Ввод логина")
     public void mailLogin() {
-        fillField(mailPage.login, BaseSteps.login);
-        mailPage.identifierNext.click();
+        Wait<WebDriver> wait = new WebDriverWait(driver, 10, 1000);
+        wait.until(ExpectedConditions.visibilityOf(new MailPage(getDriver()).login));
+        new MailPage(getDriver()).login.click();
+        new MailPage(getDriver()).login.sendKeys(BaseSteps.login);
+        new MailPage(getDriver()).identifierNext.click();
     }
 
     @Step("Ввод пароля")
     public void mailPassword() {
-        fillField(mailPage.password, BaseSteps.passwordMail);
-        mailPage.passwordNext.click();
+        Wait<WebDriver> wait = new WebDriverWait(driver, 10, 1000);
+        wait.until(ExpectedConditions.visibilityOf(new MailPage(getDriver()).password));
+        new MailPage(getDriver()).password.click();
+        new MailPage(getDriver()).password.sendKeys(BaseSteps.passwordMail);
+        new MailPage(getDriver()).passwordNext.click();
     }
 
     @Step("Выбор и нажатие на письмо от ebay")
-    public void openMail(){
+    public void openMail() {
         new MailPage(getDriver()).notOpenedMail.click();
     }
 
     @Step("Нажатие кнопки подтвердить в письме")
-    public void assertButton(){
-        new MailPage(getDriver()).notOpenedMail.click();
+    public void assertButton() {
+        new MailPage(getDriver()).accertButton.click();
     }
 
 }

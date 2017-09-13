@@ -50,8 +50,8 @@ public class EbayRegistrationPage extends BasePage {
             case  "Имя":
                 fillField(firstname, value);
                 break;
-            case  "Телефон":
-                fillField(phoneFlagComp1, value);
+            case  "Мобильный телефон":
+                fillFieldIfPresent(phoneFlagComp1, value);
                 break;
             case  "Адрес эл. почты":
                 fillField(email, value);
@@ -59,8 +59,8 @@ public class EbayRegistrationPage extends BasePage {
             case  "Пароль":
                 fillField(password, value);
                 break;
-            case  "Повторный ввод эл. почты":
-                fillField(remail, value);
+            case  "Введите адрес эл. почты еще раз":
+                fillFieldIfPresent(remail, value);
                 break;
             default:  throw new AssertionError("Поле '"+fieldName+"' не объявлено на странице");
         }

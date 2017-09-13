@@ -12,19 +12,22 @@ import java.util.HashMap;
 public class EbayRegistrationSteps extends BaseSteps {
 
     @Step("поле {0} заполняется значением {1}")
-    public void fillField(String field, String value){
+    public void fillField(String field, String value) {
         new EbayRegistrationPage(getDriver()).fillField(field, value);
     }
 
     @Step("заполняются поля")
-    public void fillFields(HashMap<String, String> fields){
-        fields.forEach((k, v)-> fillField(k,v));
+    public void fillFields(HashMap<String, String> fields) {
+        fields.forEach((k, v) -> fillField(k, v));
     }
 
     @Step("Выполнено нажатие на ссылку «Зарегистрируйтесь»")
-    public void clickRegisterButton(){
+    public void clickRegisterButton() {
         new EbayRegistrationPage(getDriver()).signUpButton.click();
     }
 
-
+    @Step("Нажать на кнопку 'Заменить учётную запись'")
+    public void clickReqinterButton() {
+        new EbayRegistrationPage(getDriver()).reginter.click();
+    }
 }
