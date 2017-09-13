@@ -1,9 +1,11 @@
 package packagePages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * Created by user on 12.09.2017.
@@ -40,7 +42,27 @@ public class EbayRegistrationPage extends BasePage {
         this.driver = driver;
     }
 
-    public void checkPresent(){
-
+    public void fillField(String fieldName, String value){
+        switch (fieldName){
+            case  "Фамилия":
+                fillField(lastname, value);
+                break;
+            case  "Имя":
+                fillField(firstname, value);
+                break;
+            case  "Телефон":
+                fillField(phoneFlagComp1, value);
+                break;
+            case  "Эл. почта":
+                fillField(email, value);
+                break;
+            case  "Пароль":
+                fillField(password, value);
+                break;
+            case  "Повторный ввод эл. почты":
+                fillField(remail, value);
+                break;
+            default:  throw new AssertionError("Поле '"+fieldName+"' не объявлено на странице");
+        }
     }
 }

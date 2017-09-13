@@ -1,74 +1,91 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import packagePages.*;
+import steps.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
-public class SberTest extends BaseTest {
-    @Test
+public class SberTest {
+    BaseSteps baseSteps = new BaseSteps();
+    EbayMainPageSteps ebayMainPageSteps = new EbayMainPageSteps();
+    EbayRegistrationSteps ebayRegistrationPage = new EbayRegistrationSteps();
+    MailPageSteps mailPageSteps = new MailPageSteps();
+    SignInPageSteps signInPageSteps = new SignInPageSteps();
+    HashMap<String, String> testData = new HashMap<>();
+
+
+    @Test(description = "Регистрация на ebay.com")
     public void testScenario1() throws Exception {
+        testData.put("Имя", "Дмитрий");
+        testData.put("Фамилия", "Дмитриев");
+        testData.put("Эл.Почта", baseSteps.login);
+        testData.put("Пароль", baseSteps.passwordApp);
+        testData.put("Телефон", "4056664523");
+        testData.put("Повторный ввод эл.почты", baseSteps.login);
 
-        driver.get(baseUrl);
-        driver.manage().window().maximize();
+        ebayMainPageSteps.clickRegisterLink();
+        ebayRegistrationPage.fillFields(testData);
+        ebayRegistrationPage.clickRegisterButton();
+        mailPageSteps.getMailUrl();
+        mailPageSteps.mailLogin();
+        mailPageSteps.mailPassword();
+        mailPageSteps.openMail();
+        mailPageSteps.assertButton();
+        baseSteps.switchWindow();
+        signInPageSteps.ebayLogin();
+        signInPageSteps.ebayPassword();
+        signInPageSteps.confirmPassowrd();
+        ebayMainPageSteps.search("blackberry");
+        ebayMainPageSteps.pressFindButton();
+        ebayMainPageSteps.checkNumberOfGoods(50);
+        ebayMainPageSteps.quit();
+        ebayMainPageSteps.checkQuit();
 
-        EbayMainPage ebayMainPage = new EbayMainPage(driver);
-        ebayMainPage.signUp.click();
+        // EbayRegistrationPage ebayRegistrationPage = new EbayRegistrationPage(driver);
 
-        EbayRegistrationPage ebayRegistrationPage = new EbayRegistrationPage(driver);
+        // ebayRegistrationPage.fillField(ebayRegistrationPage.email, login);
+        // ebayRegistrationPage.fillField(ebayRegistrationPage.firstname, "Дмитрий");
+        // ebayRegistrationPage.fillField(ebayRegistrationPage.lastname, "Дмитриев");
+        //  ebayRegistrationPage.fillField(ebayRegistrationPage.password, passwordApp);
+        //    ebayRegistrationPage.fillFieldIfPresent(ebayRegistrationPage.remail, login);
+        //     ebayRegistrationPage.fillFieldIfPresent(ebayRegistrationPage.phoneFlagComp1, "4056664523");
 
-        BasePage.fillField(ebayRegistrationPage.email, login);
-        BasePage.fillField(ebayRegistrationPage.firstname, "Дмитрий");
-        BasePage.fillField(ebayRegistrationPage.lastname, "Дмитриев");
-        BasePage.fillField(ebayRegistrationPage.password, passwordApp);
-        if (ebayRegistrationPage.remail.isEnabled()) {
-            BasePage.fillField(ebayRegistrationPage.remail, login);
-        }
-        if (ebayRegistrationPage.phoneFlagComp1.isEnabled()) {
-            BasePage.fillField(ebayRegistrationPage.phoneFlagComp1, "4056664522");
-        }
 
-        ebayRegistrationPage.signUpButton.click();
-        ebayRegistrationPage.reginter.click();
+        //ebayRegistrationPage.signUpButton.click();
+        // ebayRegistrationPage.reginter.click();
 
-        driver.get(mailUrl);
-        driver.manage().window().maximize();
+        //   driver.get(mailUrl);
+        //    driver.manage().window().maximize();
 
-        MailPage mailPage = new MailPage(driver);
-        BasePage.fillField(mailPage.login, login);
-        mailPage.identifierNext.click();
-        Thread.sleep(1000);
-        mailPage.password.click();
-        BasePage.fillField(mailPage.password, passwordMail);
+        //     MailPage mailPage = new MailPage(driver);
+        //     ebayRegistrationPage.fillField(mailPage.login, login);
+        // mailPage.identifierNext.click();
+        // Thread.sleep(1000);
+        // mailPage.password.click();
+        //    ebayRegistrationPage.fillField(mailPage.password, passwordMail);
 
-        mailPage.passwordNext.click();
-        mailPage.notOpenedMail.click();
+        //   mailPage.passwordNext.click();
+        //   mailPage.notOpenedMail.click();
 
-        mailPage.accertButton.click();
-        SignInPage signInPage = new SignInPage(driver);
+        //  mailPage.accertButton.click();
+        // SignInPage signInPage = new SignInPage(driver);
 
-        switchWindow();
+        //   switchWindow();
 
-        BasePage.fillField(signInPage.login, login);
-        BasePage.fillField(signInPage.password, passwordApp);
-        signInPage.enterButton.click();
+        /// signInPage.fillField(signInPage.login, login);
+        //  signInPage.fillField(signInPage.password, passwordApp);
+        //  signInPage.enterButton.click();
 
-        BasePage.fillField(ebayMainPage.search, "blackberry");
-        ebayMainPage.findButton.click();
+        //   signInPage.fillField(ebayMainPage.search, "blackberry");
+        //  ebayMainPage.findButton.click();
 
-        assertEquals(50, ebayMainPage.assertNumbersOfItems());
+        //  assertEquals(50, ebayMainPage.assertNumbersOfItems());
 
-        ebayMainPage.quit.click();
+        // ebayMainPage.loginMenu.click();
+        // ebayMainPage.quit.click();
 
-        assertTrue(ebayMainPage.signUp.isDisplayed());
+        //   assertTrue(ebayMainPage.signUp.isDisplayed());
     }
 }

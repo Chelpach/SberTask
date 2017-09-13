@@ -22,8 +22,11 @@ public class EbayMainPage extends BasePage {
     @FindBy(css = "#gh-btn")
     public WebElement findButton;
 
-    @FindBy(css="#ListViewInner")
+    @FindBy(css = "#ListViewInner")
     public WebElement listViewInner;
+
+    @FindBy(xpath = "//*[@class='gh-eb-arw gh-sprRetina']")
+    public WebElement loginMenu;
 
     @FindBy(css = "#gh-uo>a")
     public WebElement quit;
@@ -34,7 +37,7 @@ public class EbayMainPage extends BasePage {
         this.driver = driver;
     }
 
-    public int assertNumbersOfItems(){
+    public int assertNumbersOfItems() {
         List<WebElement> list = new ArrayList<WebElement>();
         list = listViewInner.findElements(By.className("lvtitle"));
         System.out.println(list.size());
