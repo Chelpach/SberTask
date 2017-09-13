@@ -36,4 +36,9 @@ public class BasePage {
         }
         return false;
     }
+
+    public boolean checkTelephone(WebElement element){
+        return isElementPresent(element);
+    }
+
 }

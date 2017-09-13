@@ -18,7 +18,6 @@ import static steps.BaseSteps.*;
  * Created by user on 13.09.2017.
  */
 public class MailPageSteps {
-    MailPage mailPage = new MailPage(getDriver());
 
     @Step("Переход на страницу почты")
     public void getMailUrl() {
@@ -41,8 +40,6 @@ public class MailPageSteps {
 
     @Step("Ввод пароля")
     public void mailPassword() {
-        Wait<WebDriver> wait = new WebDriverWait(driver, 10, 1000);
-        wait.until(ExpectedConditions.visibilityOf(new MailPage(getDriver()).password));
         new MailPage(getDriver()).password.click();
         new MailPage(getDriver()).password.sendKeys(BaseSteps.passwordMail);
         new MailPage(getDriver()).passwordNext.click();

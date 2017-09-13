@@ -65,4 +65,5 @@ public class EbayRegistrationPage extends BasePage {
             default:  throw new AssertionError("Поле '"+fieldName+"' не объявлено на странице");
         }
     }
+
 }

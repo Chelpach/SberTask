@@ -11,7 +11,6 @@ import static steps.BaseSteps.getDriver;
  * Created by user on 13.09.2017.
  */
 public class SignInPageSteps{
-    SignInPage signInPage=new SignInPage(getDriver());
 
     @Step("Поле {0} заполняется значением {2}")
     protected void fillField(WebElement element, String value) {
@@ -20,17 +19,17 @@ public class SignInPageSteps{
 
     @Step("Ввод логина")
     public void ebayLogin() {
-        fillField(signInPage.login, BaseSteps.login);
+        new SignInPage(getDriver()).login.sendKeys(BaseSteps.login);
     }
 
     @Step("Ввод пароля")
     public void ebayPassword() {
-        fillField(signInPage.password, BaseSteps.passwordApp);
+        new SignInPage(getDriver()).password.sendKeys(BaseSteps.passwordApp);
     }
 
     @Step("Нажатие кнопки далее")
     public void confirmPassowrd() {
-        signInPage.enterButton.click();
+        new SignInPage(getDriver()).enterButton.click();
     }
 
 }
