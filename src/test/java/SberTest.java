@@ -1,7 +1,7 @@
 import org.testng.annotations.Test;
 import packagePages.*;
+import ru.yandex.qatools.allure.annotations.Title;
 import steps.*;
-
 import java.util.HashMap;
 
 import static org.testng.AssertJUnit.assertEquals;
@@ -15,7 +15,7 @@ public class SberTest extends BaseSteps {
     SignInPageSteps signInPageSteps = new SignInPageSteps();
     HashMap<String, String> testData = new HashMap<>();
 
-
+@Title("Регистрация на ebay.com")
     @Test(description = "Регистрация на ebay.com")
     public void testScenario1() throws Exception {
         testData.put("Имя", "Дмитрий");
@@ -37,6 +37,7 @@ public class SberTest extends BaseSteps {
         mailPageSteps.openMail();
         mailPageSteps.assertButton();
         baseSteps.switchWindow();
+        //при переходе по старой ссылке просит зарегистрироваться
         signInPageSteps.ebayLogin();
         signInPageSteps.ebayPassword();
         signInPageSteps.confirmPassowrd();
