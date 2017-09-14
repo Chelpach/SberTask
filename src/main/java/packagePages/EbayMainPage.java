@@ -40,7 +40,6 @@ public class EbayMainPage extends BasePage {
     public int assertNumbersOfItems() {
         List<WebElement> list = new ArrayList<WebElement>();
         list = listViewInner.findElements(By.className("lvtitle"));
-        System.out.println(list.size());
         return list.size();
     }
 
