@@ -8,8 +8,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.HashMap;
 
+import static steps.BaseSteps.getDriver;
 
-public class EbayRegistrationSteps extends BaseSteps {
+
+public class EbayRegistrationSteps {
 
     @Step("поле {0} заполняется значением {1}")
     public void fillField(String field, String value) {

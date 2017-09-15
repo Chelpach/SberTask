@@ -1,13 +1,11 @@
-import org.testng.annotations.Test;
+
+import org.junit.Test;
 import packagePages.*;
 import ru.yandex.qatools.allure.annotations.Title;
 import steps.*;
 import java.util.HashMap;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
-
-public class SberTest extends BaseSteps {
+public class SberTe extends BaseSteps {
     BaseSteps baseSteps = new BaseSteps();
     EbayMainPageSteps ebayMainPageSteps = new EbayMainPageSteps();
     EbayRegistrationSteps ebayRegistrationSteps = new EbayRegistrationSteps();
@@ -16,7 +14,7 @@ public class SberTest extends BaseSteps {
     HashMap<String, String> testData = new HashMap<>();
 
 @Title("Регистрация на ebay.com")
-    @Test(description = "Регистрация на ebay.com")
+    @Test
     public void testScenario1() throws Exception {
         testData.put("Имя", "Дмитрий");
         testData.put("Фамилия", "Дмитриев");
@@ -24,7 +22,7 @@ public class SberTest extends BaseSteps {
         testData.put("Пароль", baseSteps.passwordApp);
 
         ebayMainPageSteps.clickRegisterLink();
-        if(new EbayRegistrationPage(getDriver()).phoneFlagComp1.isDisplayed()){
+        if(new EbayRegistrationPage(getDriver()).isElementPresent(new EbayRegistrationPage(getDriver()).phoneFlagComp1)){
             testData.put("Мобильный телефон", "4056664524");
             testData.put("Введите адрес эл. почты еще раз", baseSteps.login);
         }

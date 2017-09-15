@@ -7,8 +7,9 @@ import packagePages.EbayMainPage;
 import packagePages.MailPage;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static steps.BaseSteps.getDriver;
 
 /**
