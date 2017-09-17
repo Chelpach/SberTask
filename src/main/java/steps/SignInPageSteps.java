@@ -19,6 +19,7 @@ public class SignInPageSteps{
 
     @Step("Ввод логина")
     public void ebayLogin() {
+        new SignInPage(getDriver()).login.clear();
         new SignInPage(getDriver()).login.sendKeys(BaseSteps.login);
     }
 

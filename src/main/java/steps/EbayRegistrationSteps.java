@@ -1,8 +1,10 @@
 package steps;
 
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import packagePages.BasePage;
 import packagePages.EbayRegistrationPage;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -25,11 +27,16 @@ public class EbayRegistrationSteps {
 
     @Step("Выполнено нажатие на ссылку «Зарегистрируйтесь»")
     public void clickRegisterButton() {
-        new EbayRegistrationPage(getDriver()).signUpButton.click();
+        new EbayRegistrationPage(getDriver()).clickRegisrationButton();
     }
 
     @Step("Нажать на кнопку 'Заменить учётную запись'")
     public void clickReqinterButton() {
         new EbayRegistrationPage(getDriver()).reginter.click();
+    }
+
+    @Step("Проверка активности формы")
+    public boolean checkForm() {
+        return new EbayRegistrationPage(getDriver()).checkForm();
     }
 }

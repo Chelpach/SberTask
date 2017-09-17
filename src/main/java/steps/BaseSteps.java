@@ -55,7 +55,7 @@ public class BaseSteps {
         driver.quit();
     }
 
-    public void switchWindow(){
+    public static void switchWindow(){
         for (String winHandle : driver.getWindowHandles()) {
             driver.switchTo().window(winHandle);
         }

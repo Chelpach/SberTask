@@ -33,6 +33,9 @@ public class EbayRegistrationPage extends BasePage {
     @FindBy(css = "#sbtBtn")
     public WebElement signUpButton;
 
+    @FindBy(css = "#ppaFormSbtBtn")
+    public WebElement signUpButton2;
+
     @FindBy(css = "#reginter")
     public WebElement reginter;
 
@@ -42,28 +45,61 @@ public class EbayRegistrationPage extends BasePage {
         this.driver = driver;
     }
 
-    public void fillField(String fieldName, String value){
-        switch (fieldName){
-            case  "Фамилия":
-                fillField(lastname, value);
-                break;
-            case  "Имя":
-                fillField(firstname, value);
-                break;
-            case  "Мобильный телефон":
-                fillFieldIfPresent(phoneFlagComp1, value);
-                break;
-            case  "Адрес эл. почты":
-                fillField(email, value);
-                break;
-            case  "Пароль":
-                fillField(password, value);
-                break;
-            case  "Введите адрес эл. почты еще раз":
-                fillFieldIfPresent(remail, value);
-                break;
-            default:  throw new AssertionError("Поле '"+fieldName+"' не объявлено на странице");
+    public void fillField(String fieldName, String value) {
+        if (isElementPresent(signUpButton)) {
+            switch (fieldName) {
+                case "Фамилия":
+                    fillField(lastname, value);
+                    break;
+                case "Имя":
+                    fillField(firstname, value);
+                    break;
+                case "Мобильный телефон":
+                    fillFieldIfPresent(phoneFlagComp1, value);
+                    break;
+                case "Адрес эл. почты":
+                    fillField(email, value);
+                    break;
+                case "Пароль":
+                    fillField(password, value);
+                    break;
+                case "Введите адрес эл. почты еще раз":
+                    fillFieldIfPresent(remail, value);
+                    break;
+                default:
+                    throw new AssertionError("Поле '" + fieldName + "' не объявлено на странице");
+            }
+        } else {
+            switch (fieldName) {
+                case "Фамилия":
+                    fillField(lastname, value);
+                    break;
+                case "Имя":
+                    fillField(firstname, value);
+                    break;
+                case "Адрес эл. почты":
+                    fillField(email, value);
+                    break;
+                case "Пароль":
+                    fillField(password, value);
+                    break;
+                default:
+                    throw new AssertionError("Поле '" + fieldName + "' не объявлено на странице");
+            }
         }
     }
 
+    public void clickRegisrationButton() {
+        if (isElementPresent(signUpButton2)) {
+            signUpButton2.click();
+        } else {
+            signUpButton.click();
+        }
+    }
+
+    public boolean checkForm() {
+        if (isElementPresent(signUpButton2)) {
+            return true;
+        } else return false;
+    }
 }
